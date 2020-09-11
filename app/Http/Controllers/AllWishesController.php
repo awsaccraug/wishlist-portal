@@ -23,23 +23,22 @@ class AllWishesController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-   public function index()
+    public function index()
     {
         $wisher = session('wisher');
-        $response = $this->apiRequest('get', config('apiRequests.wishlistApiUrl').'wishes');
+        $response = $this->apiRequest('get', config('apiRequests.wishlistApiUrl') . 'wishes');
         $wishes = $response->data;
         return view('welcome', ['wisher' => $wisher, 'wishes' => $wishes]);
     }
-     public function search(Request $request)
+    public function search(Request $request)
     {
 
         $wisher = session('wisher');
-        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl').'wishes/search', ['title' => $request->title]);
+        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'wishes/search', ['title' => $request->title]);
         $wishes = $response->data;
         $resultsMessage = $wishes ? 'Search results for ' : "Sorry, we could'nt find any results matching";
         $resultsMessage .= " '$request->title'";
         return view('search-wish', ['wisher' => $wisher, 'wishes' => $wishes]);
-
     }
     public function paginate($items, $perPage = 20, $page = null, $options = [])
     {
