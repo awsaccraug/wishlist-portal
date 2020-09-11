@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace App\Traits\Auth;
 
 use App\Traits\ApiRequest;
 use Illuminate\Http\Request;
@@ -37,12 +37,12 @@ trait RegistersUsers
             'password' => 'required|string|confirmed|min:8',
         ];
         $validatedData = Validator::make($request->all(), $rules);
-        if($validatedData->fails()) {
+        if ($validatedData->fails()) {
             return redirect()->back()->withErrors($validatedData)->withInput();
         }
 
-        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl').'register', $request->except('_token'));
-        if($response) {
+        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'register', $request->except('_token'));
+        if ($response) {
             switch ($response->code) {
                 case 1062:
                     return redirect()->back()->with('duplicateEntry', $response->message)->withInput();

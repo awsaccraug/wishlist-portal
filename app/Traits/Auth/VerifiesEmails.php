@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace App\Traits\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
@@ -19,8 +19,8 @@ trait VerifiesEmails
     public function show(Request $request)
     {
         return $request->user()->hasVerifiedEmail()
-                        ? redirect($this->redirectPath())
-                        : view('auth.verify');
+            ? redirect($this->redirectPath())
+            : view('auth.verify');
     }
 
     /**

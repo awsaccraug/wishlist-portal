@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace App\Traits\Auth;
 
 use App\Traits\ApiRequest;
 use Illuminate\Http\Request;
@@ -37,15 +37,17 @@ trait AuthenticatesUsers
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
         }
 
-        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl').'login', $request->except('_token'));
-        if($response && $response->code === 200) {
+        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'login', $request->except('_token'));
+        if ($response && $response->code === 200) {
             session(['wisher' => $response->data]);
             return redirect('home');
         } else {
@@ -85,7 +87,8 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $this->credentials($request),
+            $request->filled('remember')
         );
     }
 
@@ -113,7 +116,7 @@ trait AuthenticatesUsers
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+            ?: redirect()->intended($this->redirectPath());
     }
 
     /**
