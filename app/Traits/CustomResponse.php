@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Log;
+
 trait CustomResponse
 {
     protected $okMessage = 'Success';

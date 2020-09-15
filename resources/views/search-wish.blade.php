@@ -46,7 +46,6 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 ">
                                 <div class="card">
                                     <div class="card-block">
-                                        {{-- <h5 class="card-title">{{ $wisher->email }}</h5> --}}
                                         <p class="card-text" style="font-size: medium; min-height: 50px;">
                                             <strong>{{ Str::limit($wish->title, 45, '...') }}</strong></p>
                                         <small class="text-muted d-block">Created

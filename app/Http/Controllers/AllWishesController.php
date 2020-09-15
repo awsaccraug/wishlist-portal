@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traits\ApiRequest;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
@@ -32,7 +33,6 @@ class AllWishesController extends Controller
     }
     public function search(Request $request)
     {
-
         $wisher = session('wisher');
         $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'wishes/search', ['title' => $request->title]);
         $wishes = $response->data;

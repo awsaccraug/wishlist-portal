@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 trait AuthenticatesUsers
 {
@@ -32,7 +33,10 @@ trait AuthenticatesUsers
      */
     public function login(Request $request)
     {
-        $this->validateLogin($request);
+        $validatedData = $this->validateLogin($request);
+        if ($validatedData->fails()) {
+            return redirect()->back()->withErrors($validatedData)->withInput();
+        }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -51,7 +55,7 @@ trait AuthenticatesUsers
             session(['wisher' => $response->data]);
             return redirect('home');
         } else {
-            return Redirect::back()->with('wisherNotFound', 'The credentials you provided does not match any of our records');
+            return Redirect::back()->with('wisherNotFound', 'The credentials you provided does not match any of our records')->withInput();
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -70,12 +74,13 @@ trait AuthenticatesUsers
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function validateLogin(Request $request)
+    protected function validateLogin(Request $request): object
     {
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ]);
+        $rules = [
+            'username' => 'required|string|min:2',
+            'password' => 'required|string|min:8',
+        ];
+        return Validator::make($request->all(), $rules);
     }
 
     /**

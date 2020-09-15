@@ -39,15 +39,23 @@ ul {
     outline: none;
 }
 
-.card-footer-menu-button {
-    background-color: #fff;
+.card-footer-menu-button:focus {
+    box-shadow: none !important;
 }
 
-.card-footer-menu-button:hover {
-    background-color: #F3F3F3;
-    background: #ffffff;
-    box-shadow: 20px 20px 60px #d9d9d9,
-        -20px -20px 60px #ffffff;
+.elevate-1 {
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    box-shadow: 11px 11px 22px #cfcfcf,
+        -11px -11px 22px #ffffff !important;
+}
+
+.wish-card:hover {
+    cursor: pointer;
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    box-shadow: -5px -5px 0px transparent,
+        5px 5px 0px transparent !important;
 }
 
 a {

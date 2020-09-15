@@ -7,8 +7,11 @@
                         <input type="text" name="title" class="form-control" required="">
                         <span class="form-bar"></span>
                         <label class="float-label text-muted" style="font-size: large"><i
-                                class="fa fa-search m-r-10"></i>Search {{ sizeof($wishes) }}
-                            wishes</label>
+                                class="fa fa-search m-r-10"></i>@if (sizeof($wishes) > 0)
+                            Search {{ sizeof($wishes) }} @if (sizeof($wishes) > 1 ) wishes @else wish @endif
+                            @else
+                            No wishes available
+                            @endif</label>
                     </div>
                 </form>
             </div>

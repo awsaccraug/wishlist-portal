@@ -224,7 +224,7 @@
                                     <p class="my-2 card-text">{{ Str::limit($wish->title, 100, '...') }}</p>
                                     <hr>
                                     <p><small><strong>Created By: </strong></small>@if($wish->wisher)
-                                        {{ $wish->wisher->email }} @endif</p>
+                                        {{ $wish->wisher->username }} @endif</p>
                                     <p>About {{ \Carbon\Carbon::createFromDate($wish->created_at)->diffForHumans() }}
                                     </p>
                                     <p><small><strong> @if(\Carbon\Carbon::now()->greaterThan($wish->due_date)) Ended

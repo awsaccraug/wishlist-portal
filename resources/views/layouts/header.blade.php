@@ -108,7 +108,7 @@
                     <a href="#!" class="waves-effect waves-light">
                         <img src="{{ asset('files/assets/images/avatar-4.jpg') }}" class="img-radius"
                             alt="User-Profile-Image">
-                        <span>{{ $wisher->email }}</span>
+                        <span>{{ $wisher->username }}</span>
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">

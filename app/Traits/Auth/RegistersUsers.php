@@ -33,7 +33,7 @@ trait RegistersUsers
     public function register(Request $request)
     {
         $rules = [
-            'email' => 'required|string| email',
+            'username' => 'required|string|min:2',
             'password' => 'required|string|confirmed|min:8',
         ];
         $validatedData = Validator::make($request->all(), $rules);
