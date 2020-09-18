@@ -11,8 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Log;
 
 Auth::routes();
+// Route::get('/test', function () {
+//     Log::info('testing logs');
+//     return 'logged';
+// });
 Route::get('', 'AllWishesController@index')->name('welcome');
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('wishes/view', 'AllWishesController@search')->name('viewWish');

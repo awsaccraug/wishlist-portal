@@ -8,11 +8,18 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('welcome') }}" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">All wishes</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                     @if ($wisher)
                     <li class="">
                         <a href="{{ route('home') }}" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">Wishes</span>
+                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">My wishes</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

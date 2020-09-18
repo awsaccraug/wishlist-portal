@@ -100,10 +100,10 @@ return [
                     'secret' => env('AWS_CLOUD_WATCH_SECRET'),
                 ],
             ],
-            'stream_name' => env('AWS_CLOUD_WATCH_STREAM_NAME', 'OSIS_API'),
+            'stream_name' => env('AWS_CLOUD_WATCH_STREAM_NAME'),
             'group_name' => env('AWS_CLOUD_WATCH_GROUP_NAME'),
             'retention' => env('AWS_CLOUD_WATCH_RETENTION_DAYS', 3),
-            'level' => env('AWS_CLOUD_WATCH_LEVEL', 'api'),
+            'level' => env('AWS_CLOUD_WATCH_LEVEL', 'portal'),
         ],
 
     ],

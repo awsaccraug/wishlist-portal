@@ -6,7 +6,8 @@
         <div class="page-wrapper">
             <!-- Page-body start -->
             <div class="page-body">
-                <div class="m-t-40">
+                <h5 class="text-center my-4 display-5">My Wishes</h5>
+                <div>
                     @include('shared.page-header')
                     <div class="row">
                         <!-- task, page, download counter  start -->

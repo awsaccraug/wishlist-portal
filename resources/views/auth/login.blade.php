@@ -12,6 +12,23 @@
                     <div class="text-center">
                         @include('shared.logo')
                     </div>
+                    <div class="mt-2 mx-auto" style="max-width: 450px;">
+                        @if (\Session::has('duplicateEntry'))
+                        <div class="alert alert-danger text-center">
+                            {{ session::get('duplicateEntry') }}
+                        </div>
+                        @endif
+                        @if (\Session::has('loginError'))
+                        <div class="alert alert-danger text-center">
+                            {{ session::get('loginError') }}
+                        </div>
+                        @endif
+                        @if (\Session::has('wisherNotFound'))
+                        <div class="alert alert-danger text-center">
+                            {{ \Session::get('wisherNotFound') }}
+                        </div>
+                        @endif
+                    </div>
                     <div class="auth-box card">
                         <div class="card-block">
                             <div class="row m-b-20">
@@ -37,7 +54,7 @@
                                 class="form-control @error('username') is-invalid @enderror" name="username"
                                 value="{{ old('username') }}" autocomplete="username" autofocus required>
                             <span class="form-bar"></span>
-                            <label class="float-label">Your Username*</label>
+                            <label class="float-label">Your username*</label>
                             @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -49,7 +66,7 @@
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="current-password">
                             <span class="form-bar"></span>
-                            <label class="float-label">Password*</label>
+                            <label class="float-label">Your password*</label>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -94,23 +111,6 @@
         </div>
         </form>
         <!-- end of form -->
-        <div class="col-sm-12 w-50 mx-auto my-2">
-            @if (\Session::has('duplicateEntry'))
-            <div class="alert alert-danger text-center">
-                {{ session::get('duplicateEntry') }}
-            </div>
-            @endif
-            @if (\Session::has('loginError'))
-            <div class="alert alert-danger text-center">
-                {{ session::get('loginError') }}
-            </div>
-            @endif
-            @if (\Session::has('wisherNotFound'))
-            <div class="alert alert-danger text-center">
-                {{ \Session::get('wisherNotFound') }}
-            </div>
-            @endif
-        </div>
     </div>
     <!-- end of col-sm-12 -->
     </div>

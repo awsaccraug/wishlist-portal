@@ -34,6 +34,7 @@ trait RegistersUsers
     {
         $rules = [
             'username' => 'required|string|min:2',
+            'email' => 'email',
             'password' => 'required|string|confirmed|min:8',
         ];
         $validatedData = Validator::make($request->all(), $rules);

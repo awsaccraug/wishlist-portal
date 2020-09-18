@@ -42,7 +42,7 @@ class WishController extends Controller
     {
         $wisher = session('wisher');
         $params = array_merge($request->except(['_token', '_method']), ['api_token' => $wisher->api_token]);
-        $this->apiRequest('put', config('apiRequests.wishlistApiUrl') . 'wishes/' . $id, $params);
+        $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'wishes/' . $id, $params, 'multipart');
         return redirect()->back();
     }
     public function deleteWish($id)
@@ -53,20 +53,20 @@ class WishController extends Controller
         return redirect()->back();
     }
 
-    protected function storeUploadedFile(Request $request)
-    {
-        $path = $request->hasFile('cover_photo') ? $request->file('cover_photo')->store('public/wishes/cover_photos') : "";
-        return str_replace('public/', '', $path);
-    }
-    protected function updateUploadedFile(Request $request)
-    {
-        $this->removeExistingFile($request);
-        return !$request->hasFile('cover_photo') && $request->path ? $request->path : $this->storeUploadedFile($request);
-    }
-    protected function removeExistingFile(Request $request)
-    {
-        if ($request->hasFile('cover_photo') && $request->path) {
-            Storage::exists('public/' . $request->path) ? Storage::delete('public/' . $request->path) : "";
-        }
-    }
+    // protected function storeUploadedFile(Request $request)
+    // {
+    //     $path = $request->hasFile('cover_photo') ? $request->file('cover_photo')->store('public/wishes/cover_photos') : "";
+    //     return str_replace('public/', '', $path);
+    // }
+    // protected function updateUploadedFile(Request $request)
+    // {
+    //     $this->removeExistingFile($request);
+    //     return !$request->hasFile('cover_photo') && $request->path ? $request->path : $this->storeUploadedFile($request);
+    // }
+    // protected function removeExistingFile(Request $request)
+    // {
+    //     if ($request->hasFile('cover_photo') && $request->path) {
+    //         Storage::exists('public/' . $request->path) ? Storage::delete('public/' . $request->path) : "";
+    //     }
+    // }
 }

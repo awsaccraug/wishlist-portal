@@ -55,7 +55,7 @@ trait AuthenticatesUsers
             session(['wisher' => $response->data]);
             return redirect('home');
         } else {
-            return Redirect::back()->with('wisherNotFound', 'The credentials you provided does not match any of our records')->withInput();
+            return Redirect::back()->with('wisherNotFound', 'Incorrect username or password')->withInput();
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
