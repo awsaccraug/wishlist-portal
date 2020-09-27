@@ -59,7 +59,7 @@
                                                     <div class="user-title">
                                                         <h2>{{ $wisher->username }}</h2>
                                                         <span
-                                                            class="text-white">{{ $wisher->email ? $wisher->email : "" }}</span>
+                                                            class="text-white">{{ property_exists($wisher, 'email') ? $wisher->email : "" }}</span>
                                                     </div>
                                                 </div>
                                                 {{-- <div>
