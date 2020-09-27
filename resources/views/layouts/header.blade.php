@@ -106,23 +106,25 @@
                 @if ($wisher)
                 <li class="user-profile header-notification">
                     <a href="#!" class="waves-effect waves-light">
-                        <img src="{{ asset('files/assets/images/avatar-4.jpg') }}" class="img-radius"
-                            alt="User-Profile-Image">
+                        <img src="@if($wisher->profile_photo && \Storage::disk('s3')->exists($wisher->profile_photo))
+                                {{ \Storage::disk('s3')->url($wisher->profile_photo) }} @else
+                                {{ \Storage::disk('s3')->url(config('defaultImageLinks.profilePhoto')) }} @endif"
+                            class="img-radius bg-light" alt="User-Profile-Image" style="height: 2rem;">
                         <span>{{ $wisher->username }}</span>
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">
-                        <li class="waves-effect waves-light">
+                        {{-- <li class="waves-effect waves-light">
                             <a href="#!">
                                 <i class="ti-settings"></i> Settings
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="waves-effect waves-light">
-                            <a href="user-profile.html">
+                            <a href="{{ route('showWisherProfile') }}">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>
-                        <li class="waves-effect waves-light">
+                        {{-- <li class="waves-effect waves-light">
                             <a href="email-inbox.html">
                                 <i class="ti-email"></i> My Messages
                             </a>
@@ -131,7 +133,7 @@
                             <a href="auth-lock-screen.html">
                                 <i class="ti-lock"></i> Lock Screen
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="waves-effect waves-light">
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

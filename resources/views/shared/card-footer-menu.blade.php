@@ -20,7 +20,7 @@
             @endif
         </div>
     </div>
-    <div><button class="btn card-footer-menu-button btn-sm bg-white"
+    <div><button class="btn no-box-shadow btn-sm bg-white"
             onclick="$('#card-footer-btn-group-{{ $wish->id }}').toggle('slow')"><i
                 class="fa fa-ellipsis-v fa-lg"></i></button></div>
 </div>

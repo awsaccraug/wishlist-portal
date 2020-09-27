@@ -39,7 +39,7 @@ ul {
     outline: none;
 }
 
-.card-footer-menu-button:focus {
+.no-box-shadow:focus {
     box-shadow: none !important;
 }
 

@@ -41,31 +41,13 @@
                         <!-- Search result card end -->
 
                         <!-- Search result found start -->
-                        <div class="row search-result">
+                        <div class="row">
                             @foreach ($wishes as $wish)
                             <div class="col-lg-3 col-md-4 col-sm-6 ">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <p class="card-text" style="font-size: medium; min-height: 50px;">
-                                            <strong>{{ Str::limit($wish->title, 45, '...') }}</strong></p>
-                                        <small class="text-muted d-block">Created
-                                            {{ \Carbon\Carbon::createFromDate($wish->created_at)->diffForHumans() }}</small>
-                                        <small
-                                            class="text-muted d-block">@if(\Carbon\Carbon::now()->greaterThan($wish->due_date))
-                                            Ended
-                                            @else Ends @endif
-                                            {{ \Carbon\Carbon::createFromDate($wish->due_date)->diffForHumans() }}</small>
-                                    </div>
-                                    <div class="card-footer p-1 text-center" style="min-height: 50px;">
-                                        @if ((session('wisher') && $wish->wisher) && (session('wisher')->id ===
-                                        $wish->wisher->id))
-                                        <button type="button" class="btn btn-sm btn-success"
-                                            onclick="onEditWish({{ json_encode($wish, true) }})"><i
-                                                class="fa fa-lg fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-sm btn-danger"
-                                            onclick="onDeleteWish({{ json_encode($wish, true) }}, {{ json_encode(route('deleteWish', $wish->id), true) }})"><i
-                                                class="fa fa-lg fa-trash"></i></button>
-                                        @endif
+                                <div class="card elevate-1 wish-card">
+                                    @include('shared.wishes-card-body')
+                                    <div class="card-footer pt-0">
+                                        @include('shared.card-footer-menu')
                                     </div>
                                 </div>
                             </div>

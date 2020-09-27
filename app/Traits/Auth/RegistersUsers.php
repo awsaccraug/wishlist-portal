@@ -42,17 +42,14 @@ trait RegistersUsers
             return redirect()->back()->withErrors($validatedData)->withInput();
         }
 
-        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'register', $request->except('_token'));
+        $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'register', $request->except('_token'), 'multipart');
         if ($response) {
             switch ($response->code) {
-                case 1062:
-                    return redirect()->back()->with('duplicateEntry', $response->message)->withInput();
-                    break;
                 case 200:
                     session(['wisher' => $response->data]);
                     return redirect('home');
                 default:
-                    return Redirect::back()->with('registerError', 'An error occurred whiles registering you')->withInput();
+                    return redirect()->back()->with('registerError', $response->errors)->withInput();
                     break;
             }
         }

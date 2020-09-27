@@ -19,7 +19,7 @@ const onEditWish = (wish) => {
 const onDeleteWish = (wish, url) => {
     Swal.fire({
         title: "",
-        html: `Are you sure you want to remove <strong>${wish.title}</strong>`,
+        html: `Are you sure you want to remove <strong>${wish.title}</strong> ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",

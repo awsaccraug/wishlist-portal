@@ -73,7 +73,7 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="row m-t-25 text-left">
+                        {{-- <div class="row m-t-25 text-left">
                             <div class="col-12">
                                 <div class="checkbox-fade fade-in-primary d-">
                                     <label>
@@ -88,11 +88,12 @@
                                         Password?</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row m-t-30">
                             <div class="col-md-12">
                                 <button type="submit"
-                                    class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Login</button>
+                                    class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"
+                                    onclick="showOrHideElement($(this), 'show')">Login
                             </div>
                         </div>
                         <hr />

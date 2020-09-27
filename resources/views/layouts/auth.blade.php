@@ -161,6 +161,7 @@
     <script type="text/javascript" src="{{ asset('files/bower_components/jquery-i18next/js/jquery-i18next.min.js') }}">
     </script>
     <script type="text/javascript" src="{{ asset('files/assets/js/common-pages.js') }}"></script>
+    @yield('page-js')
 </body>
 
 </html>

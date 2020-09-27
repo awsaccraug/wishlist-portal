@@ -1,16 +1,30 @@
 'use strict';
-$(document).ready(function() {
+const removeProfilePhoto = () => {
+    Swal.fire({
+        title: "",
+        html: `Are you sure you want to remove profile photo ?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonColor: "#d33",
+    }).then((res) => {
+        if (res.value) {
+            $('#removeProfilePhoto-form').submit();
+        }
+    });
+}
+$(document).ready(function () {
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
         dashboardEcharts();
     });
 
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         dashboardEcharts();
     });
 
 
-    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function(e) {
+    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function (e) {
         dashboardEcharts();
     });
 
@@ -21,7 +35,7 @@ $(document).ready(function() {
         var option = {
             tooltip: {
                 trigger: 'item',
-                formatter: function(params) {
+                formatter: function (params) {
                     var date = new Date(params.value[0]);
                     var data = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
                     return data + '<br/>' + params.value[1] + ', ' + params.value[2];
@@ -49,10 +63,10 @@ $(document).ready(function() {
                 name: 'Profit',
                 type: 'line',
                 showAllSymbol: true,
-                symbolSize: function(value) {
+                symbolSize: function (value) {
                     return Math.round(value[2] / 10) + 2;
                 },
-                data: (function() {
+                data: (function () {
                     var d = [];
                     var len = 0;
                     var now = new Date();
@@ -75,8 +89,8 @@ $(document).ready(function() {
     //for responsive all datatable
     $(".theme-loader").animate({
         opacity: "0"
-    },1000);
-    setTimeout(function() {
+    }, 1000);
+    setTimeout(function () {
         $(".theme-loader").remove();
     }, 1000);
     $('#simpletable').DataTable({
@@ -92,7 +106,7 @@ $(document).ready(function() {
     // });
 
     //    Edit information of user-profile
-    $('#edit-cancel').on('click', function() {
+    $('#edit-cancel').on('click', function () {
 
         var c = $('#edit-btn').find("i");
         c.removeClass('icofont-close');
@@ -105,7 +119,7 @@ $(document).ready(function() {
     $('.edit-info').hide();
 
 
-    $('#edit-btn').on('click', function() {
+    $('#edit-btn').on('click', function () {
         var b = $(this).find("i");
         var edit_class = b.attr('class');
         if (edit_class == 'icofont icofont-edit') {
@@ -285,7 +299,7 @@ $(document).ready(function() {
     });
 
     //edit user description
-    $('#edit-cancel-btn').on('click', function() {
+    $('#edit-cancel-btn').on('click', function () {
 
         var c = $('#edit-info-btn').find("i");
         c.removeClass('icofont-close');
@@ -298,7 +312,7 @@ $(document).ready(function() {
     $('.edit-desc').hide();
 
 
-    $('#edit-info-btn').on('click', function() {
+    $('#edit-info-btn').on('click', function () {
         var b = $(this).find("i");
         var edit_class = b.attr('class');
         if (edit_class == 'icofont icofont-edit') {
@@ -315,7 +329,7 @@ $(document).ready(function() {
     });
 
     // Mini-color js start
-    $('.demo').each(function() {
+    $('.demo').each(function () {
         $(this).minicolors({
             control: $(this).attr('data-control') || 'hue',
             defaultValue: $(this).attr('data-defaultValue') || '',
@@ -326,7 +340,7 @@ $(document).ready(function() {
             opacity: $(this).attr('data-opacity'),
             position: $(this).attr('data-position') || 'bottom left',
             swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-            change: function(value, opacity) {
+            change: function (value, opacity) {
                 if (!value) return;
                 if (opacity) value += ', ' + opacity;
                 if (typeof console === 'object') {

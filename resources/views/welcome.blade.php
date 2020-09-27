@@ -9,7 +9,6 @@
             <div>
                 @include('shared.page-header')
                 <div class="row">
-                    <!-- task, page, download counter  start -->
                     @foreach ($wishes as $wish)
                     <div class="col-lg-3 col-md-4 col-sm-6 ">
                         <div class="card elevate-1 wish-card">
@@ -20,7 +19,6 @@
                         </div>
                     </div>
                     @endforeach
-                    <!-- task, page, download counter  end -->
                 </div>
             </div>
         </div>

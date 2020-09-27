@@ -6,7 +6,21 @@
         <div class="page-wrapper">
             <!-- Page-body start -->
             <div class="page-body">
-                <h5 class="text-center my-4 display-5">My Wishes</h5>
+                <div class="row d-flex justify-content-end m-t-20">
+                    <div></div>
+                    <div class="page-header-title mx-auto">
+                        <h5>My Wishes</h5>
+                    </div>
+                    <div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('welcome') }}"> <i class="fa fa-home"></i> </a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">My Wishes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div>
                     @include('shared.page-header')
                     <div class="row">

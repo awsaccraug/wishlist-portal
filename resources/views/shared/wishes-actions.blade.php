@@ -7,8 +7,23 @@
                 <img class="img-fluid" src="" alt="Cover photo">
                 <div class="p-5">
                     <p class="lead viewTitle"></p>
-                    <span class="card-text text-muted">Created <span class="viewCreatedAt"></span></span>
-                    <span class="card-text text-muted float-right">Ends <span class="viewDueDate"></span></span>
+                    <hr>
+                    <p class="card-text text-muted">
+                        <span class="d-block mb-2"><i class="fa fa-clock-o fa-lg mr-2"></i>
+                            <span class="viewCreatedAt"></span></span>
+                        <span class="d-block mb-2"><i class="fa fa-calendar-check-o fa-lg mr-2" aria-hidden="true"></i>
+                            <span class="viewDueDate"></span></span>
+                        @if (Request::is('/'))
+                        <span class="d-block"><i class="icofont icofont-ui-user text-muted mr-2 "></i>
+                            {{ $wish->wisher ? $wish->wisher->username : 'Anonymous' }}</span>
+                        @endif
+                    </p>
+                </div>
+                <div class="mb-2 text-center">
+                    <button type="button" class="btn btn-lg bg-white no-box-shadow" data-dismiss="modal"
+                        aria-label="Close">
+                        <i aria-hidden="true" style="font-size:xx-large;" class="text-danger">&times;</i>
+                    </button>
                 </div>
             </div>
         </div>

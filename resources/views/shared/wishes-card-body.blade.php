@@ -10,7 +10,7 @@
             {{ \Carbon\Carbon::createFromDate($wish->created_at)->diffForHumans() }}</span>
         <span class="d-block mb-2"><i class="fa fa-calendar-check-o fa-lg mr-2" aria-hidden="true"></i>
             {{ \Carbon\Carbon::createFromDate($wish->due_date)->diffForHumans() }}</span>
-        @if (Request::is('/'))
+        @if (!Request::is('home'))
         <span class="d-block"><i class="icofont icofont-ui-user text-muted mr-2 "></i>
             {{ $wish->wisher ? $wish->wisher->username : 'Anonymous' }}</span>
         @endif
