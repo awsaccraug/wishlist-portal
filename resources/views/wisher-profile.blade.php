@@ -58,8 +58,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="user-title">
                                                         <h2>{{ $wisher->username }}</h2>
-                                                        <span
-                                                            class="text-white">{{ property_exists($wisher, 'email') ? $wisher->email : "" }}</span>
+                                                        <span class="text-white">{{$wisher->email ?? "N/A" }}</span>
                                                     </div>
                                                 </div>
                                                 {{-- <div>
@@ -140,7 +139,7 @@
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Email</th>
-                                                                                    <td>{{ $wisher->email ? $wisher->email : 'N/A' }}
+                                                                                    <td>{{ $wisher->email ?? 'N/A' }}
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -238,7 +237,7 @@
                                                                     </div>
                                                                     <div class="form-group form-primary">
                                                                         <input type="text" name="email"
-                                                                            value="{{ $wisher->email }}"
+                                                                            value="{{ $wisher->email ?? "" }}"
                                                                             class="form-control">
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">Email</label>
@@ -2398,7 +2397,8 @@
                                                         @endif" alt="Profile Photo">
             </div>
             <div class="modal-footer text-center">
-                @if ($wisher->profile_photo)
+                @if ($wisher->profile_photo &&
+                \Storage::disk('s3')->exists($wisher->profile_photo))
                 <button class="btn btn-danger btn-sm" onclick="removeProfilePhoto()"><i class="fa fa-minus-circle"></i>
                     Remove</button>
                 @endif

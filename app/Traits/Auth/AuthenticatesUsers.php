@@ -5,6 +5,7 @@ namespace App\Traits\Auth;
 use App\Traits\ApiRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
@@ -169,11 +170,10 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
+        $username = session('wisher')->username;
         $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect('/');
+        Log::info($username . ' logged out');
+        return redirect('/');
     }
 
     /**

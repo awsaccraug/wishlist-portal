@@ -25,6 +25,10 @@ class WisherController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function __construct()
+    {
+        $this->middleware('auth.custom');
+    }
     public function index()
     {
         $wisher = session('wisher');

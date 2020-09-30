@@ -15,7 +15,7 @@ trait ApiRequest
         $client = new Client();
         $response = $client->request($method, $endpoint, $this->getParams($parameters, $type));
         $responseBody = json_decode($response->getBody());
-        Log::info(['API Response' => $responseBody]);
+        Log::info('API Response', [$responseBody]);
         return $responseBody;
     }
     private function getParams(array $data, $type)
