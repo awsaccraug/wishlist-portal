@@ -105,7 +105,7 @@
                 </li> --}}
                 @if ($wisher)
                 <li class="user-profile header-notification">
-                    <a href="#!" class="waves-effect waves-light">
+                    <a href="javascript:void(0)" class="waves-effect waves-light">
                         <img src="@if($wisher->profile_photo && \Storage::disk('s3')->exists($wisher->profile_photo))
                                 {{ \Storage::disk('s3')->url($wisher->profile_photo) }} @else
                                 {{ \Storage::disk('s3')->url(config('defaultImageLinks.profilePhoto')) }} @endif"

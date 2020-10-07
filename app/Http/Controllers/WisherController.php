@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,8 +47,17 @@ class WisherController extends Controller
         $wisher = session('wisher');
         $params = array_merge($request->except(['_token', '_method']), ['api_token' => $wisher->api_token]);
         $response = $this->apiRequest('post', config('apiRequests.wishlistApiUrl') . 'wishers/' . $wisher->id, $params, 'multipart');
-        $response && $response->code == 200 ? session(['wisher' => $response->data]) : "";
-        return redirect()->back();
+        switch ($response->code) {
+            case 200:
+                session(['wisher' => $response->data]);
+                return redirect()->back();
+                break;
+            case 1062:
+                return Redirect::back()->with('usernameTaken', 'Username already taken');
+            default:
+                # code...
+                break;
+        }
     }
     public function removeProfilePhoto()
     {
